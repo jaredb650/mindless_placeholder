@@ -325,7 +325,7 @@ export default function Preloader({ isLoading }) {
                             <img
                                 src="/animation.webp"
                                 alt="mindless.pr"
-                                className="w-48 md:w-64 lg:w-80 h-auto"
+                                className="w-48 md:w-64 lg:w-80 h-auto opacity-90"
                             />
                             {/* Grain overlay on logo */}
                             <canvas
