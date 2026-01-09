@@ -319,26 +319,13 @@ export default function Preloader({ isLoading }) {
                         className="absolute inset-0 z-10"
                     />
 
-                    {/* Animated Logo with Glitch + Grain Effect */}
+                    {/* Animated Logo with CSS Glitch + Grain Effect */}
                     <div className="relative z-20 flex flex-col items-center justify-center -mt-32">
-                        <div className="relative glitch-wrapper">
+                        <div className="relative glitch-single">
                             <img
                                 src="/animation.webp"
                                 alt="mindless.pr"
-                                className="w-48 md:w-64 lg:w-80 h-auto glitch-img"
-                            />
-                            {/* Glitch layers */}
-                            <img
-                                src="/animation.webp"
-                                alt=""
-                                className="absolute inset-0 w-48 md:w-64 lg:w-80 h-auto glitch-img glitch-layer-1"
-                                aria-hidden="true"
-                            />
-                            <img
-                                src="/animation.webp"
-                                alt=""
-                                className="absolute inset-0 w-48 md:w-64 lg:w-80 h-auto glitch-img glitch-layer-2"
-                                aria-hidden="true"
+                                className="w-48 md:w-64 lg:w-80 h-auto"
                             />
                             {/* Grain overlay on logo */}
                             <canvas
