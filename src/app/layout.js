@@ -8,6 +8,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/animation.webp" as="image" type="image/webp" />
+      </head>
       <body className="antialiased">
         {children}
       </body>
