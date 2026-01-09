@@ -205,8 +205,8 @@ export default function Preloader({ isLoading }) {
                 const mindlessWidth = logoTextCtx.measureText("MINDLESS").width;
                 logoTextCtx.fillText("MINDLESS", 10, 0);
 
-                // Draw .PR in blue
-                logoTextCtx.fillStyle = "#3B82F6";
+                // Draw .PR in blue (saturated to match logo)
+                logoTextCtx.fillStyle = "#2563EB";
                 logoTextCtx.fillText(".PR", mindlessWidth + 10, 0);
 
                 const totalLogoWidth = logoTextCtx.measureText("MINDLESS.PR").width;
@@ -219,7 +219,7 @@ export default function Preloader({ isLoading }) {
                 comingTextCtx.clearRect(0, 0, comingTextCanvas.width, comingTextCanvas.height);
                 comingTextCtx.font = `400 ${comingFontSize}px "Space Mono", monospace`;
                 comingTextCtx.textBaseline = "top";
-                comingTextCtx.fillStyle = "#60A5FA";
+                comingTextCtx.fillStyle = "#3B82F6";
                 comingTextCtx.fillText(currentText, 5, 0);
 
                 const comingWidth = comingTextCtx.measureText(currentText).width;
@@ -307,7 +307,7 @@ export default function Preloader({ isLoading }) {
 
                     // --- MATRIX RAIN ---
                     if (Math.random() > 0.98) ctx.fillStyle = "#FFFFFF";
-                    else ctx.fillStyle = "#60A5FA";
+                    else ctx.fillStyle = "#3B82F6";
 
                     ctx.fillText(text, dropX, dropY);
 
