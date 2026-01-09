@@ -106,7 +106,7 @@ export default function Preloader({ isLoading }) {
                 data[i] = noise;     // R
                 data[i + 1] = noise; // G
                 data[i + 2] = noise; // B
-                data[i + 3] = 25;    // A - more visible
+                data[i + 3] = 255;   // A - full opacity (controlled by CSS)
             }
 
             ctx.putImageData(imageData, 0, 0);
