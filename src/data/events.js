@@ -18,21 +18,6 @@
 export const events = [
     // ── UPCOMING ────────────────────────────────────────────────
     {
-        id: "outta-the-grave",
-        title: "OUTTA THE GRAVE — RELEASE PARTY",
-        subtitle: "WARLORDS album release party — w/ special guests · $10 at the door",
-        series: null,
-        type: "alt",
-        date: "2026-06-19T20:00",
-        venue: "La Caverna",
-        city: "Santurce, San Juan PR",
-        lineup: ["WARLORDS"],
-        // tickets at the door for now — swap for a real ticket link if one drops
-        ticketUrl: "https://www.instagram.com/warlords.band",
-        image: "/events/outta-the-grave.jpg",
-        status: "upcoming",
-    },
-    {
         id: "puro-gruv",
         title: "PURO GRUV",
         subtitle: "???",
@@ -48,6 +33,20 @@ export const events = [
     },
 
     // ── PAST (the archive) ──────────────────────────────────────
+    {
+        id: "outta-the-grave",
+        title: "OUTTA THE GRAVE — RELEASE PARTY",
+        subtitle: "WARLORDS album release party — w/ special guests · $10 at the door",
+        series: null,
+        type: "alt",
+        date: "2026-06-19T20:00",
+        venue: "La Caverna",
+        city: "Santurce, San Juan PR",
+        lineup: ["WARLORDS"],
+        ticketUrl: null,
+        image: "/events/outta-the-grave.jpg",
+        status: "past",
+    },
     {
         id: "dimensions-la-respuesta",
         title: "DIMENSIONS: LA RESPUESTA",
