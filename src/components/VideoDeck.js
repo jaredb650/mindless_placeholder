@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import ScrambleText from "@/components/ScrambleText";
 
 /**
@@ -42,6 +41,7 @@ export default function VideoDeck({ videos }) {
                             <img
                                 src={`https://i.ytimg.com/vi/${current.youtubeId}/hqdefault.jpg`}
                                 alt={current.title}
+                                loading="lazy"
                                 className="w-full h-full object-cover grayscale-[0.4] contrast-110 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.02]"
                             />
                             <span className="absolute inset-0 tv-scanlines" />
@@ -97,7 +97,7 @@ export default function VideoDeck({ videos }) {
                                 {active === i ? "▸" : " "} CH-{String(i + 1).padStart(2, "0")}
                             </span>
                             <span className="min-w-0">
-                                <motion.span
+                                <span
                                     className={`block font-mono text-xs uppercase tracking-[0.1em] truncate transition-colors ${
                                         active === i
                                             ? "text-bone"
@@ -105,7 +105,7 @@ export default function VideoDeck({ videos }) {
                                     }`}
                                 >
                                     {video.title}
-                                </motion.span>
+                                </span>
                                 <span className="block font-mono text-[9px] tracking-[0.2em] text-ghost uppercase mt-1">
                                     {video.youtubeId ? "READY" : "PENDING"} ▪{" "}
                                     {new Date(`${video.date}T12:00:00-04:00`)

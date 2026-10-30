@@ -154,6 +154,41 @@ body {
   will-change: transform;
 }
 
+/* hero entrance — plain CSS so it runs from first paint without
+   waiting for JS. Curves match the old framer-motion values:
+   (0.22,1,0.36,1) for the headline, framer's default ease-out
+   (0,0,0.58,1) for the fades, ease-in-out for the arrow bob. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.hero-rise {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.hero-fade-note {
+  animation: hero-fade 0.7s cubic-bezier(0, 0, 0.58, 1) 0.8s both;
+}
+
+.hero-fade-cta {
+  animation: hero-fade 0.8s cubic-bezier(0, 0, 0.58, 1) 1.2s both;
+}
+
+.hero-bob {
+  animation: hero-bob 1.3s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
 /* character-select tile — fighting game roster */
 @keyframes select-pulse {
   0%, 100% {
@@ -168,6 +203,45 @@ body {
 
 .tile-selected {
   animation: select-pulse 1.1s ease-in-out infinite;
+}
+
+/* same pulse, compositor-only — for the always-on mobile banner.
+   The border sits at volt; ::after carries the ice border + glow
+   and ::before the volt glow, and the two crossfade by opacity
+   (which the GPU handles) instead of repainting box-shadow every
+   frame. Needs an element without overflow:hidden. */
+@keyframes select-pulse-in {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes select-pulse-out {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.banner-selected {
+  position: relative;
+  border-color: var(--color-volt);
+}
+
+.banner-selected::before,
+.banner-selected::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+}
+
+.banner-selected::before {
+  box-shadow: 0 0 0 1px var(--color-volt), 0 0 22px rgba(59, 130, 246, 0.45);
+  animation: select-pulse-out 1.1s ease-in-out infinite;
+}
+
+.banner-selected::after {
+  border: 2px solid var(--color-ice);
+  box-shadow: 0 0 0 1px var(--color-ice), 0 0 34px rgba(59, 130, 246, 0.7);
+  animation: select-pulse-in 1.1s ease-in-out infinite;
 }
 
 /* editorial list rows — the anti-card */
@@ -443,6 +517,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* the boot sequence never plays for reduced-motion visitors */
+  .matrix-preloader {
+    display: none;
+  }
   .glitch-ambient,
   .ticker-track,
   .blink {

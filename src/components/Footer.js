@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { nav, site } from "@/data/site";
 import SocialLinks from "@/components/SocialLinks";
 
@@ -16,7 +17,7 @@ export default function Footer() {
 
                 <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-10">
                     <div className="col-span-2 md:col-span-1">
-                        <img src="/brand/mindlessIcon.png" alt="Mindless skull mark" className="w-14 h-14 mb-4" />
+                        <Image src="/brand/mindlessIcon.png" alt="Mindless skull mark" width={56} height={56} className="w-14 h-14 mb-4" />
                         <p className="font-mono text-[11px] leading-relaxed text-dim">
                             {site.fullName}
                             <br />

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import SocialLinks from "@/components/SocialLinks";
 
 function ClockAST() {
@@ -78,9 +79,12 @@ export default function Header() {
                 {/* left chrome */}
                 <div className="pointer-events-auto flex items-center gap-3 md:gap-5 font-mono text-[9px] md:text-[10px] tracking-[0.2em] text-dim select-none bg-ink/80 backdrop-blur-sm border border-line px-3 py-2">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <img
+                        <Image
                             src="/brand/mindlessIcon.png"
                             alt="MINDLESS"
+                            width={28}
+                            height={28}
+                           
                             className="w-6 h-6 md:w-7 md:h-7 transition-transform duration-500 group-hover:rotate-[360deg]"
                         />
                         <span className="pixel text-[10px] md:text-[11px] text-bone tracking-normal">
@@ -131,7 +135,7 @@ export default function Header() {
                         </div>
                     ))}
                     <div className="flex items-center px-3">
-                        <img src="/icon-tight.png" alt="" className="w-7 h-7" />
+                        <Image src="/icon-tight.png" alt="" width={28} height={28} className="w-7 h-7" />
                     </div>
                 </nav>
 
@@ -149,7 +153,7 @@ export default function Header() {
             {/* mobile overlay */}
             <AnimatePresence>
                 {open && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -158,7 +162,7 @@ export default function Header() {
                     >
                         <nav className="px-6 py-8 flex flex-col gap-2">
                             {MOBILE_NAV.map((item, i) => (
-                                <motion.div
+                                <m.div
                                     key={item.href}
                                     initial={{ opacity: 0, x: -24 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -179,18 +183,18 @@ export default function Header() {
                                             {item.labelEs}
                                         </span>
                                     </Link>
-                                </motion.div>
+                                </m.div>
                             ))}
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.4 }}
                                 className="mt-8"
                             >
                                 <SocialLinks />
-                            </motion.div>
+                            </m.div>
                         </nav>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </header>

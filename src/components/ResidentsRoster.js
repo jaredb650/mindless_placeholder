@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import ScrambleText from "@/components/ScrambleText";
 
 const TYPE_LABEL = { dj: "DJ", punk: "PUNK", alt: "ALT" };
@@ -75,10 +76,11 @@ function Tile({ artist, index, selected, onSelect, className = "" }) {
                     </span>
                 </div>
             ) : (
-                <img
+                <Image
                     src={artistImage(artist, index)}
                     alt={artist.name}
-                    loading="lazy"
+                    fill
+                    sizes="280px"
                     style={{ objectPosition: artist.imagePosition ?? "center" }}
                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-300 ${
                         artist.image ? "" : "grayscale"
@@ -164,7 +166,7 @@ function DesktopRoster({ artists }) {
             <div className="sticky top-28 border-2 border-line bg-panel">
                 <div className="relative aspect-[4/3] overflow-hidden border-b-2 border-line">
                     <AnimatePresence mode="popLayout">
-                        <motion.div
+                        <m.div
                             key={current?.slug}
                             initial={{ clipPath: "inset(0 100% 0 0)" }}
                             animate={{ clipPath: "inset(0 0% 0 0)" }}
@@ -177,9 +179,11 @@ function DesktopRoster({ artists }) {
                                     <span className="pixel text-9xl text-line select-none">?</span>
                                 </div>
                             ) : (
-                                <img
+                                <Image
                                     src={artistImage(current, panelIdx)}
                                     alt={current?.name ?? ""}
+                                    fill
+                                    sizes="400px"
                                     style={{
                                         objectPosition: current?.imagePosition ?? "center 25%",
                                     }}
@@ -192,7 +196,7 @@ function DesktopRoster({ artists }) {
                                 <div className="absolute inset-0 bg-blue/25 mix-blend-color" />
                             )}
                             <div className="absolute inset-0 tv-scanlines" />
-                        </motion.div>
+                        </m.div>
                     </AnimatePresence>
                     <span className="absolute top-2 left-2 pixel text-[9px] bg-danger text-bone px-2 py-1 uppercase">
                         P1
@@ -272,7 +276,7 @@ function MobileRoster({ artists }) {
                         key={artist.slug}
                         data-banner={i}
                         className={`border-2 transition-colors duration-300 ${
-                            isActive ? "tile-selected" : "border-line"
+                            isActive ? "banner-selected" : "border-line"
                         }`}
                     >
                         {/* banner — grows tall when active so the FACE is the star */}
@@ -287,10 +291,11 @@ function MobileRoster({ artists }) {
                                     <span className="pixel text-5xl text-line select-none">?</span>
                                 </div>
                             ) : (
-                                <img
+                                <Image
                                     src={artistImage(artist, i)}
                                     alt={artist.name}
-                                    loading="lazy"
+                                    fill
+                                    sizes="100vw"
                                     style={{
                                         objectPosition: artist.imagePosition ?? "center 25%",
                                     }}

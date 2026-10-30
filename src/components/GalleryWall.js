@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { m } from "framer-motion";
 
 /**
  * The wall — a quiet masonry collage of shots from the floor.
@@ -14,7 +15,7 @@ export default function GalleryWall({ images }) {
         <>
             <div className="columns-2 md:columns-3 lg:columns-4 gap-2 md:gap-3 [column-fill:_balance]">
                 {images.map((src, i) => (
-                    <motion.button
+                    <m.button
                         key={src}
                         initial={{ opacity: 0, y: 14 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -24,17 +25,19 @@ export default function GalleryWall({ images }) {
 
                         className="relative block w-full mb-2 md:mb-3 break-inside-avoid overflow-hidden group cursor-pointer"
                     >
-                        <img
+                        <Image
                             src={src}
                             alt={`MINDLESS event photo ${i + 1}`}
-                            loading="lazy"
+                            width={0}
+                            height={0}
+                            sizes="(min-width: 1280px) 312px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                             className="w-full h-auto grayscale contrast-110 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.02]"
                         />
                         <span className="absolute inset-0 tv-scanlines opacity-50 pointer-events-none" />
                         <span className="absolute bottom-2 left-2 font-mono text-[8px] tracking-[0.25em] text-bone/80 bg-ink/70 px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
                             IMG_{String(i + 1).padStart(3, "0")} ▪ SAN JUAN PR
                         </span>
-                    </motion.button>
+                    </m.button>
                 ))}
             </div>
 

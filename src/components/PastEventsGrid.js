@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { formatEventDate } from "@/data/events";
 
 // stand-in tiles until real flyers drop into /public/events
@@ -20,10 +21,11 @@ export default function PastEventsGrid({ events }) {
                     key={event.id}
                     className="relative aspect-[3/4] overflow-hidden border border-line bg-panel group"
                 >
-                    <img
+                    <Image
                         src={event.image ?? FALLBACKS[i % FALLBACKS.length]}
                         alt={`${event.title} flyer`}
-                        loading="lazy"
+                        fill
+                        sizes="(min-width: 1280px) 312px, (min-width: 1024px) 25vw, 50vw"
                         className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />

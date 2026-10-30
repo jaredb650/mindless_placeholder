@@ -1,30 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { AnimatePresence, m } from "framer-motion";
 
 /**
  * The boot sequence — the original coming-soon Matrix rain,
  * resurrected as a preloader. Plays on every load, lifts to
  * reveal the hero. Click to skip.
+ *
+ * Rendered in the server HTML so it covers the page from the very
+ * first paint (no flash of the hero before it mounts). Reduced-motion
+ * visitors never see it — hidden by CSS before JS, dropped after.
  */
 export default function MatrixPreloader() {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const raf = requestAnimationFrame(() => setShow(true));
-
-        const t = setTimeout(() => setShow(false), 2600);
-        return () => {
-            cancelAnimationFrame(raf);
-            clearTimeout(t);
-        };
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const t = setTimeout(() => setShow(false), reduced ? 0 : 2600);
+        return () => clearTimeout(t);
     }, []);
 
     useEffect(() => {
         if (!show) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
@@ -72,21 +73,24 @@ export default function MatrixPreloader() {
     return (
         <AnimatePresence>
             {show && (
-                <motion.div
+                <m.div
                     onClick={() => setShow(false)}
                     initial={{ opacity: 1 }}
                     exit={{
                         y: "-100%",
                         transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
                     }}
-                    className="fixed inset-0 z-[210] bg-ink cursor-pointer overflow-hidden"
+                    className="matrix-preloader fixed inset-0 z-[210] bg-ink cursor-pointer overflow-hidden"
                 >
                     <canvas ref={canvasRef} className="absolute inset-0" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <div style={{ perspective: "600px" }}>
-                            <img
+                            <Image
                                 src="/brand/mindlessIcon.png"
                                 alt=""
+                                width={144}
+                                height={144}
+                                preload
                                 className="coin-spin w-28 md:w-36 h-auto opacity-90"
                             />
                         </div>
@@ -97,7 +101,7 @@ export default function MatrixPreloader() {
                             <span className="text-volt">▸</span> Iniciando transmisión
                         </p>
                     </div>
-                </motion.div>
+                </m.div>
             )}
         </AnimatePresence>
     );

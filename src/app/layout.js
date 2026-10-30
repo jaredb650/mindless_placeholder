@@ -3,26 +3,27 @@ import { Bricolage_Grotesque, Silkscreen, Space_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MatrixPreloader from "@/components/MatrixPreloader";
+import MotionProvider from "@/components/MotionProvider";
 import { site } from "@/data/site";
 
+// Bricolage is a variable font: one file covers every weight
 const bricolage = Bricolage_Grotesque({
     subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700", "800"],
     variable: "--font-bricolage",
     display: "swap",
 });
 
+// only the regular cuts are used — no bold/italic mono or pixel text
 const spaceMono = Space_Mono({
     subsets: ["latin"],
-    weight: ["400", "700"],
-    style: ["normal", "italic"],
+    weight: "400",
     variable: "--font-space-mono",
     display: "swap",
 });
 
 const silkscreen = Silkscreen({
     subsets: ["latin"],
-    weight: ["400", "700"],
+    weight: "400",
     variable: "--font-silkscreen",
     display: "swap",
 });
@@ -129,10 +130,12 @@ export default function RootLayout({ children }) {
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
                 />
-                <MatrixPreloader />
-                <Header />
-                <main className="relative z-10 min-h-screen">{children}</main>
-                <Footer />
+                <MotionProvider>
+                    <MatrixPreloader />
+                    <Header />
+                    <main className="relative z-10 min-h-screen">{children}</main>
+                    <Footer />
+                </MotionProvider>
             </body>
         </html>
     );

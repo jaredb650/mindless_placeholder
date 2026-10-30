@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { formatEventDate, parseEventDate } from "@/data/events";
 
 // stand-in row backdrops until real flyers drop into /public/events
@@ -127,10 +128,11 @@ export default function EventsList({ events, archive = false }) {
                         >
                             {/* flyer backdrop — black & white at rest, color when active */}
                             <div aria-hidden="true" className="absolute inset-0">
-                                <img
+                                <Image
                                     src={eventImage(event, i)}
                                     alt=""
-                                    loading="lazy"
+                                    fill
+                                    sizes="(min-width: 1280px) 1248px, 100vw"
                                     style={
                                         event.imagePosition
                                             ? { objectPosition: event.imagePosition }
