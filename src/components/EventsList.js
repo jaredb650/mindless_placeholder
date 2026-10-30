@@ -228,6 +228,10 @@ export default function EventsList({ events, archive = false }) {
                                                 <span className="pixel text-xs text-danger border border-danger px-5 py-2.5 uppercase">
                                                     Sold out
                                                 </span>
+                                            ) : event.doorOnly ? (
+                                                <span className="pixel text-xs text-ghost border border-line px-5 py-2.5 uppercase">
+                                                    Door tickets only
+                                                </span>
                                             ) : event.ticketUrl ? (
                                                 <a
                                                     href={event.ticketUrl}

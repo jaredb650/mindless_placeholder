@@ -11,12 +11,32 @@
 // date: ISO "YYYY-MM-DD" (+ "THH:MM" to show a time). All times
 //   are Puerto Rico local (AST).
 //
+// doorOnly: true → no ticket link; the button greys out and reads
+//   DOOR TICKETS ONLY (leave ticketUrl null).
+//
 // type: "techno" | "alt" | "mystery"  → the row tag
 // image: flyers live in /public/events/
 // ============================================================
 
 export const events = [
     // ── UPCOMING ────────────────────────────────────────────────
+    {
+        id: "resurrection",
+        title: "RESURRECTION",
+        subtitle: "Halloween night — en Halloween se levantan los zombies pa' moshear. Dress code: magos y zombies · $15",
+        series: null,
+        type: "alt",
+        date: "2026-10-31T20:00",
+        venue: "La Respuesta",
+        city: "Santurce, San Juan PR",
+        lineup: ["LEYSECA", "WARLORDS"],
+        ticketUrl: null,
+        doorOnly: true,
+        image: "/events/resurrection.jpg",
+        status: "upcoming",
+    },
+
+    // ── PAST (the archive) ──────────────────────────────────────
     {
         id: "puro-gruv",
         title: "PURO GRUV",
@@ -27,12 +47,10 @@ export const events = [
         venue: "Shipwreck Studios",
         city: "???",
         lineup: ["???"],
-        ticketUrl: "https://boletos.boletera.net/e/puro-gruv",
+        ticketUrl: null,
         image: "/events/puro-gruv.jpg",
-        status: "upcoming",
+        status: "past",
     },
-
-    // ── PAST (the archive) ──────────────────────────────────────
     {
         id: "outta-the-grave",
         title: "OUTTA THE GRAVE — RELEASE PARTY",
