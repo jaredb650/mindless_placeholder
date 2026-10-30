@@ -131,6 +131,11 @@ export default function EventsList({ events, archive = false }) {
                                     src={eventImage(event, i)}
                                     alt=""
                                     loading="lazy"
+                                    style={
+                                        event.imagePosition
+                                            ? { objectPosition: event.imagePosition }
+                                            : undefined
+                                    }
                                     className={`w-full h-full object-cover transition-all duration-700 ${
                                         isHover || isOpen
                                             ? "grayscale-0 scale-100 opacity-90"

@@ -16,6 +16,8 @@
 //
 // type: "techno" | "alt" | "mystery"  → the row tag
 // image: flyers live in /public/events/
+// imagePosition: optional CSS object-position for the row crop
+//   (e.g. "50% 7%" to show the top of a tall flyer). Default: center.
 // ============================================================
 
 export const events = [
@@ -32,6 +34,7 @@ export const events = [
         lineup: ["LEYSECA", "WARLORDS"],
         ticketUrl: "https://boletera.net/event/resureccion-fc978dac-7201-4beb-85b9-8cc61f36576c",
         image: "/events/resurrection.jpg",
+        imagePosition: "50% 10%",
         status: "upcoming",
     },
 
